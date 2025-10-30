@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Taza de Barro - Café Artesanal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <style>
+        :root {
+            --color-tierra: #6B4226;
+            --color-crema: #F5E3C3;
+            --color-verde: #A8B545;
+            --color-blanco: #FFFFFF;
+            --color-texto: #333333;
+        }
+
+        /* Base y Tipografía */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--color-texto);
+            background-color: var(--color-crema);
+        }
+
+        .section-padding {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1, h2 {
+            color: var(--color-tierra);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--color-verde);
+            display: inline-block;
+        }
+
+        /* Navegación Fija (Encabezado) */
+        .navbar {
+            background-color: var(--color-tierra);
+            color: var(--color-blanco);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--color-blanco);
+            text-decoration: none;
+        }
+
+        /* ESTILOS DE ESCRITORIO para .nav-menu */
+        .nav-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--color-blanco);
+            text-decoration: none;
+            padding: 8px 15px;
+            margin: 0 5px;
+            transition: background-color 0.3s;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .nav-menu a:hover {
+            background-color: var(--color-crema);
+            color: var(--color-tierra);
+        }
+
+        /* Botón destacado */
+        .btn-menu {
+            display: inline-block;
+            background-color: var(--color-verde);
+            color: var(--color-blanco);
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid var(--color-verde);
+            font-size: 0.9em;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(46, 139, 87, 0.3);
+        }
+        
+        .btn-menu:hover {
+            background-color: var(--color-tierra);
+            border-color: var(--color-tierra);
+            transform: translateY(-2px);
+        }
+
+        .btn-menu::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-menu:hover::before {
+            left: 100%;
+        }
+        
+        /* 1. Página de Inicio (Hero) */
+        #inicio {
+            background: url('https://artecafetero.org/wp-content/uploads/img_6b44b59e0baf79c4.webp') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        .hero-content {
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 600px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-content h1 {
+            color: var(--color-tierra);
+            font-size: 3.5em;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-style: italic;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        /* Bloque Intermedio: Historia */
+        .historia-bloque {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            padding: 40px 0;
+            text-align: left;
+        }
+
+        .historia-bloque img {
+            width: 45%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
+        }
+
+        .historia-texto {
+            width: 55%;
+        }
+        
+        /* Menú moderno con overlay difuminado */
+        .menuSwiper {
+            margin-top: 25px;
+            padding-bottom: 40px;
+        }
+
+       .menu-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    height: 350px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+.menu-item:hover {
+    transform: scale(1.02);
+}
+
+        .menu-item::before {
+            content: "";
+            position: absolute;
+            top: 0; 
+            left: 0;
+            width: 100%; 
+            height: 100%;
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(1px);
+            z-index: 0;
+        }
+
+        .menu-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-tierra), var(--color-verde));
+            z-index: 3;
+        }
+
+       .menu-content {
+    position: relative;
+    text-align: center;
+    padding: 20px;
+    z-index: 1;
+}
+
+        .menu-content h4 {
+    margin-bottom: 10px;
+}
+.menu-content p {
+    margin-bottom: 10px;
+}
+
+        .menu-content .precio {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: var(--color-tierra);
+            position: relative;
+            padding: 8px 20px;
+            background: rgba(139, 69, 19, 0.1);
+            border-radius: 25px;
+            margin: 15px 0;
+            display: inline-block;
+        }
+
+        /* Animaciones de entrada */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-item {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .menu-item:nth-child(2) { animation-delay: 0.1s; }
+        .menu-item:nth-child(3) { animation-delay: 0.2s; }
+        .menu-item:nth-child(4) { animation-delay: 0.3s; }
+
+        /* Badge para productos especiales */
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--color-verde);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 4;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .badge.sin-gluten {
+            background: #e74c3c;
+        }
+
+        /* Swiper bullets */
+        .swiper-pagination {
+            position: relative;
+            margin-top: 20px;
+            display: block;
+        }
+
+        .swiper-pagination-bullet { 
+            background-color: var(--color-tierra); 
+            opacity: 0.5;
+            width: 10px;
+            height: 10px;
+        }
+        
+        .swiper-pagination-bullet-active { 
+            background-color: var(--color-verde); 
+            opacity: 1; 
+        }
+
+        /* Flechas del carrusel */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: var(--color-tierra);
+            background-color: rgba(255,255,255,0.8);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background-color: var(--color-verde);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Efecto de sombra mejorado */
+        .swiper-shadow {
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+        }
+        
+        /* 3. Página de Reservas */
+        #reservas {
+            background-color: var(--color-blanco);
+            text-align: center;
+        }
+
+        .reservas-flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .reservas-form {
+            width: 50%;
+            max-width: 400px;
+            background-color: var(--color-crema);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--color-verde);
+        }
+
+        .reservas-form input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .reservas-form .btn-menu {
+            width: 100%;
+        }
+
+        .reservas-img {
+            width: 50%;
+            max-width: 500px;
+        }
+
+        .reservas-img img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+        
+        /* 4. Galería */
+        #galeria {
+            background-color: #f7f7f7;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border-radius: 5px;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05);
+        }
+        
+        /* 7. Contacto */
+        #contacto {
+            background-color: var(--color-crema);
+        }
+
+        .contacto-flex {
+            display: flex;
+            gap: 40px;
+            text-align: left;
+            margin-top: 40px;
+        }
+
+        .contacto-form, .contacto-info {
+            flex: 1;
+        }
+
+        .contacto-form input, .contacto-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid var(--color-verde);
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .map-container {
+            height: 300px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Pie de Página (Footer) */
+        footer {
+            background-color: var(--color-tierra);
+            color: var(--color-blanco);
+            padding: 25px 20px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        footer .social-icons a {
+            color: var(--color-crema);
+            font-size: 1.5em;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        footer .social-icons a:hover {
+            color: var(--color-verde);
+        }
+
+        footer p {
+            margin-top: 15px;
+        }
+
+        /* NUEVO: Menu Toggle (Hamburger) */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-blanco);
+            font-size: 1.8em;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* ========== 📱 DISEÑO RESPONSIVE ========== */
+        
+        /* Tablets (900px) */
+        @media (max-width: 900px) {
+            .section-padding {
+                padding: 60px 15px;
+            }
+            
+            h2 {
+                font-size: 2em;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.8em;
+            }
+            
+            .hero-content {
+                padding: 30px;
+                margin: 0 20px;
+            }
+            
+            .historia-bloque, .reservas-flex, .contacto-flex {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            
+            .historia-bloque img, .historia-texto {
+                width: 100%;
+            }
+            
+            .reservas-form, .reservas-img {
+                width: 100%;
+                max-width: none;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .menu-item {
+                height: 300px;
+            }
+            
+            .swiper-button-next,
+            .swiper-button-prev {
+                display: none;
+            }
+            
+            .swiper-pagination {
+                display: block;
+            }
+            
+            /* Menú hamburguesa CORREGIDO */
+            .menu-toggle {
+                display: block;
+            }
+
+            /* ESTILOS RESPONSIVE para .nav-menu - DENTRO del media query */
+            .nav-menu {
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--color-tierra);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-in-out;
+                box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-menu.active {
+                max-height: 500px;
+            }
+            
+            .nav-menu a {
+                padding: 15px 20px;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                margin: 0;
+                width: 100%;
+            }
+        }
+        
+        /* Móviles (600px) */
+        @media (max-width: 600px) {
+            .section-padding {
+                padding: 40px 10px;
+            }
+            
+            h2 {
+                font-size: 1.8em;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2em;
+            }
+            
+            .hero-content p {
+                font-size: 1em;
+            }
+            
+            .hero-content {
+                padding: 25px 20px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .gallery-item img {
+                height: 200px;
+            }
+            
+            .menu-item {
+                height: 250px;
+            }
+            
+            .menu-content {
+                padding: 15px;
+            }
+            
+            .menu-content h4 {
+                font-size: 1.3em;
+            }
+            
+            .reservas-form, .contacto-form {
+                padding: 20px;
+            }
+            
+            .btn-menu {
+                padding: 8px 20px;
+                font-size: 0.9em;
+            }
+            
+            footer {
+                padding: 20px 15px;
+            }
+            
+            footer .social-icons a {
+                font-size: 1.3em;
+                margin: 0 8px;
+            }
+            
+            footer p {
+                font-size: 0.8em;
+            }
+        }
+        
+        /* Móviles pequeños (400px) */
+        @media (max-width: 400px) {
+            .navbar {
+                padding: 10px 15px;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8em;
+            }
+            
+            .menu-item {
+                height: 220px;
+            }
+            
+            .menu-content h4 {
+                font-size: 1.1em;
+            }
+            
+            .menu-content p {
+                font-size: 0.9em;
+            }
+            
+            .precio {
+                font-size: 1.3rem;
+            }
+            
+            .reservas-form, .contacto-form {
+                padding: 15px;
+            }
+            
+            input, textarea {
+                font-size: 16px; /* Evita zoom en iOS */
+            }
+        }
+
+        /* Imágenes responsivas */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <img src="logo.jpeg" alt="logo" style="width:100px; height:100px; border-radius:50%; object-fit:cover; display:block;">
+
+        <button class="menu-toggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-menu" id="navMenu">
+            <a href="#inicio">Inicio</a>
+            <a href="#menu">Menú</a>
+            <a href="#reservas">Reservas</a>
+            <a href="#galeria">Galería</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </nav>
+
+    <section id="inicio">
+        <div class="hero-content">
+            <p>CAFÉ ARTESANAL</p>
+            <h1>"El sabor de nuestras raíces, en cada taza."</h1> 
+            <a href="#menu" class="btn-menu">Ver Menú</a> 
+        </div>
+    </section>
+    
+    <section class="section-padding" style="padding-top: 40px; padding-bottom: 40px;">
+        <h2>Nuestra Historia</h2>
+        <div class="historia-bloque">
+            <div class="historia-texto">
+                <p><strong>"La Taza de Barro"</strong> nació de la profunda tradición cafetalera de nuestros abuelos, quienes con <strong>técnicas artesanales</strong> y manos llenas de historia cultivaban, cosechaban y tostaban los granos con amor, paciencia y respeto por la tierra. Cada sorbo era un reflejo de su esfuerzo, un homenaje a las montañas que dieron vida al café boliviano.</p>
+
+                <p>Hoy, buscamos recrear esa <strong>experiencia auténtica</strong>, llevando a cada taza la calidez del hogar, el aroma del campo y la esencia de nuestras raíces. Promovemos el consumo responsable y justo del café boliviano, valorando a los productores que hacen posible esta magia. En cada preparación, conectamos las raíces del pasado con la modernidad de una nueva época, donde el sabor, la memoria y la pasión se encuentran para celebrar lo que somos.</p>
+            </div>
+            <img src="https://img.freepik.com/photos-premium/vieil-homme-dans-chapeau-paille-cueille-cerises-cafe-dans-style-du-beeple_921860-65970.jpg" alt="Abuelos o proceso artesanal de café">
+        </div>
+    </section>
+
+    <section id="menu" class="section-padding">
+        <h2>Menú Artesanal</h2>
+        
+        <h3 style="text-align:center; color:var(--color-tierra); margin-top:40px;">Café</h3>
+        <div class="menuSwiper swiper swiper-shadow">
+            <div class="swiper-wrapper">
+                <div class="menu-item swiper-slide" style="background-image:url('https://tse1.mm.bing.net/th/id/OIP.39ouK8FIeZcM1dBL6kenmgHaE8?rs=1&pid=ImgDetMain&o=7&rm=3');">
+                    <div class="menu-content">
+                        <h4>Café Americano</h4>
+                        <p>El clásico con granos locales tostados a la perfección.</p>
+                        <div class="precio">Bs. 10</div>
+                        <a href="https://wa.me/59171484139?text=Hola,%20quiero%20pedir%20un%20Café%20Americano%20(1%20unidad)." 
+                        target="_blank" class="btn-menu">
+                        Pedir por WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <div class="menu-item swiper-slide" style="background-image:url('https://media.ambito.com/p/8cb76a7997f304639fb6a7626f18adf5/adjuntos/239/imagenes/040/101/0040101530/1200x675/smart/capuchinojpg.jpg');">
+                    <div class="menu-content">
+                        <h4>Cappuccino</h4>
+                        <p>Espuma cremosa y equilibrio perfecto entre leche y espresso.</p>
+                        <div class="precio">Bs. 15</div>
+                        <a href="https://wa.me/59171484139?text=Hola,%20quiero%20pedir%20un%20Cappuccino%20(1%20unidad)." 
+                        target="_blank" class="btn-menu">
+                        Pedir por WhatsApp
+                        </a>
+                    </div>
+                </div>
+      <div class="menu-item swiper-slide" style="background-image:url('https://tse3.mm.bing.net/th/id/OIP.vsCUb6eRxlbCTA_XXnX9gQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3');">
+                    <div class="menu-content">
+                        <h4>Espresso Doble</h4>
+                        <p>Intenso y aromático, ideal para los amantes del café fuerte.</p>
+                        <div class="precio">Bs. 12</div>
+                        <a href="https://wa.me/59171484139?text=Hola,%20quiero%20pedir%20un%20Espresso%20Doble%20(1%20unidad)." 
+                        target="_blank" class="btn-menu">
+                        Pedir por WhatsApp
+                        </a>
+                    </div>
+                </div>
+      <div class="menu-item swiper-slide" style="background-image:url('https://tse2.mm.bing.net/th/id/OIP.VHrUEZpPdwKVe9fXXS1iFAHaE7?pid=ImgDet&w=191&h=127&c=7&o=7&rm=3');">
+                    <div class="menu-content">
+                        <h4>Latte</h4>
+                        <p>Suave y cremoso, con leche y café artesanal.</p>
+                        <div class="precio">Bs. 15</div>
+                        <a href="https://wa.me/59171484139?text=Hola,%20quiero%20pedir%20un%20Latte%20(1%20unidad)." 
+                        target="_blank" class="btn-menu">
+                        Pedir por WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <h3 style="text-align:center; color:var(--color-tierra); margin-top:50px;">Postres</h3>
+        <div class="menuSwiper swiper swiper-shadow">
+            <div class="swiper-wrapper">
+        <div class="menu-item swiper-slide" style="background-image:url('https://tse3.mm.bing.net/th/id/OIP.fLN5FREUDlh71mQs3BgD_wHaFS?rs=1&pid=ImgDetMain&o=7&rm=3');">
+                    <div class="menu-content">
+                        <h4>Cheesecake de Frutos Rojos</h4>
+                        <p>Delicado y suave, con salsa natural de frutos rojos.</p>
+                        <div class="precio">Bs. 18</div>
+                        <a href="https://wa.me/59171484139?text=Hola,%20quiero%20pedir%20un%20Cheesecake%20de%20Frutos%20Rojos%20(1%20unidad)." 
+                        target="_blank" class="btn-menu">
+                        Pedir por WhatsApp
+                        </a>
+                    </div>
+                </div>
+      <div class="menu-item swiper-slide" style="background-image:url('https://th.bing.com/th/id/R.ba49ebf360122c0bf35e07014a4b59d5?rik=8Gqckx6hTj2byg&riu=http%3a%2f%2fwww.ou.org%2flife%2ffiles%2fiStock_000008472033Small.jpg&ehk=MmuSsrnRG8YhIUoXKNH24qvqob5KA3GfqojS2%2bKlQ%2fk%3d&risl=&pid=ImgRaw&r=0');">
+                    <div class="menu-content">
+                        <h4>Tiramisú</h4>
+                        <p>Clásico italiano con toque de café artesanal.</p>
+                        <div class="precio">Bs. 20</div>
+                        <a href="https://wa.me/59171484139?text=Hola,%20quiero%20pedir%20un%20Tiramisú%20(1%20unidad)." 
+                        target="_blank" class="btn-menu">
+                        Pedir por WhatsApp
+                        </a>
+                    </div>
+                </div>
+      <div class="menu-item swiper-slide" style="background-image:url('https://tse4.mm.bing.net/th/id/OIP.yNYc0dnHwWj_1XRG5gyQeQHaFj?rs=1&pid=ImgDetMain&o=7&rm=3');">
+                    <div class="menu-content">
+                        <h4>Brownie con Helado</h4>
+                        <p>Chocolate intenso con contraste frío del helado.</p>
+                        <div class="precio">Bs. 22</div>
+                        <a href="https://wa.me/59171484139?text=Hola,%20quiero%20pedir%20un%20Brownie%20con%20Helado%20(1%20unidad)." 
+                        target="_blank" class="btn-menu">
+                        Pedir por WhatsApp
+                        </a>
+                    </div>
+                </div>
+      <div class="menu-item swiper-slide" style="background-image:url('https://tse1.mm.bing.net/th/id/OIP.SrYgLcI9PvWwUmLYCiyamQHaEK?rs=1&pid=ImgDetMain&o=7&rm=3');">
+                    <div class="menu-content">
+                        <h4>Pastel de Zanahoria</h4>
+                        <p>Suave, húmedo y con frosting de queso crema.</p>
+                        <div class="precio">Bs. 16</div>
+                        <a href="https://wa.me/59171484139?text=Hola,%20quiero%20pedir%20un%20Pastel%20de%20Zanahoria%20(1%20unidad)." 
+                        target="_blank" class="btn-menu">
+                        Pedir por WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <h3 style="text-align:center; color:var(--color-tierra); margin-top:50px;">Postres sin Gluten</h3>
+        <div class="menuSwiper swiper swiper-shadow">
+            <div class="swiper-wrapper">
+                <div class="menu-item swiper-slide" style="background-image:url('https://tse1.mm.bing.net/th/id/OIP.Hkt7kUYT38BT_4Ll4XhjZgHaE8?rs=1&pid=ImgDetMain&o=7&rm=3');">
+                    <div class="badge sin-gluten">Sin Gluten</div>
+                    <div class="menu-content">
+                        <h4>Brownie de Almendra</h4>
+                        <p>Hecho con harina de almendra, sin gluten y delicioso.</p>
+                        <div class="precio">Bs. 18</div>
+                        <a href="https://wa.me/59171484139?text=Hola,%20quiero%20pedir%20un%20Brownie%20de%20Almendra%20(1%20unidad)." 
+                        target="_blank" class="btn-menu">
+                        Pedir por WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <div class="menu-item swiper-slide" style="background-image:url('https://tse1.mm.bing.net/th/id/OIP.u3afZL_wjHzY5DFCmoducgHaFj?w=1400&h=1050&rs=1&pid=ImgDetMain&o=7&rm=3');">
+                    <div class="badge sin-gluten">Sin Gluten</div>
+                    <div class="menu-content">
+                        <h4>Tarta de Limón</h4>
+                        <p>Refrescante y libre de gluten, con base de avena.</p>
+                        <div class="precio">Bs. 20</div>
+                        <a href="https://wa.me/59171484139?text=Hola,%20quiero%20pedir%20una%20Tarta%20de%20Limón%20(1%20unidad)." 
+                        target="_blank" class="btn-menu">
+                        Pedir por WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <div class="menu-item swiper-slide" style="background-image:url('https://tse2.mm.bing.net/th/id/OIP.90QH2gpjsHIxo2GgVSMapAHaE7?rs=1&pid=ImgDetMain&o=7&rm=3');">
+                    <div class="badge sin-gluten">Sin Gluten</div>
+                    <div class="menu-content">
+                        <h4>Galletas de Coco</h4>
+                        <p>Crujientes, dulces y naturalmente sin gluten.</p>
+                        <div class="precio">Bs. 14</div>
+                    <a href="https://wa.me/59171484139?text=Hola,%20quiero%20pedir%20unas%20Galletas%20de%20Coco%20(1%20unidad)." 
+                       target="_blank" class="btn-menu">
+                        Pedir por WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <div class="menu-item swiper-slide" style="background-image:url('https://tse3.mm.bing.net/th/id/OIP.J8J-lMnq0ohzyirlkB78XgHaEK?rs=1&pid=ImgDetMain&o=7&rm=3');">
+                    <div class="badge sin-gluten">Sin Gluten</div>
+                    <div class="menu-content">
+                        <h4>Mini Tartas de Frambuesa</h4>
+                        <p>Sin gluten, ligeras y llenas de sabor natural.</p>
+                        <div class="precio">Bs. 19</div>
+                        <a href="https://wa.me/59171484139?text=Hola,%20quiero%20pedir%20unas%20Mini%20Tartas%20de%20Frambuesa%20(1%20unidad)." 
+                        target="_blank" class="btn-menu">
+                        Pedir por WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE RESERVAS -->
+<section id="reservas" class="section-padding">
+    <h2>Reserva tu Mesa</h2>
+    <p>Asegura tu espacio y disfruta de nuestro ambiente acogedor.</p>
+    <div class="reservas-flex">
+        <div class="reservas-img">
+            <img src="https://tse4.mm.bing.net/th/id/OIP._NlnG3bCsQV3wcx1nSL2vAHaE7?w=626&h=417&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Ambiente acogedor de la cafetería">
+        </div>
+        <div class="reservas-form">
+            <form id="formularioReservas"> <!-- ID agregado -->
+                <input type="text" id="nombreReserva" name="nombre" placeholder="Nombre completo" required> 
+                <input type="date" id="fechaReserva" name="fecha" required>
+                <input type="time" id="horaReserva" name="hora" required> 
+                <input type="number" id="personasReserva" name="personas" placeholder="Número de personas" min="1" required> 
+                <input type="tel" id="contactoReserva" name="telefono" placeholder="Teléfono o correo"> 
+                <button type="submit" class="btn-menu">Reservar ahora</button> 
+            </form>
+        </div>
+    </div>
+</section>
+
+    <!-- SECCIÓN DE GALERÍA -->
+    <section id="galeria" class="section-padding">
+        <h2>Nuestro Ambiente</h2>
+        <p>Fotografías de la decoración artesanal y clientes disfrutando.</p>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://img.freepik.com/premium-photo/modern-coffee-shop-interior-with-rustic-design-elements_1456-3786.jpg" alt="Decoración artesanal 1">
+            </div>
+            <div class="gallery-item">
+                <img src="https://img.freepik.com/premium-photo/still-life-coffee-wallpaper_980736-580.jpg" alt="Decoración artesanal 2">
+            </div>
+            <div class="gallery-item">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.bDzBNJFu7ThHiSp0Ssc8nQHaEO?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Clientes disfrutando">
+            </div>
+            <div class="gallery-item">
+                <img src="https://tse1.mm.bing.net/th/id/OIP.oCmp509D91Wq5QerdMFHrAHaHa?w=1440&h=1440&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Proceso de tostado">
+            </div>
+            <div class="gallery-item">
+                <img src="https://img.freepik.com/premium-photo/view-coffee-conversation-friendship-cafe_983420-210426.jpg" alt="Interior del local">
+            </div>
+            <div class="gallery-item">
+                <img src="https://img.freepik.com/premium-photo/hand-4-5-friends-smiling-sitting-drinking-coffee_971062-184.jpg" alt="Postre artesanal">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE CONTACTO -->
+   <section id="contacto" class="section-padding">
+    <h2>Contáctanos</h2>
+    <div class="contacto-flex">
+        <div class="contacto-form">
+            <h3>Envíanos un mensaje</h3>
+            <form id="formularioContacto"> <!-- Agregar este ID -->
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre" required> <!-- Agregar id -->
+                <input type="email" id="email" name="email" placeholder="Email" required> <!-- Agregar id -->
+                <textarea id="mensaje" name="mensaje" rows="5" placeholder="Tu consulta" required></textarea> <!-- Agregar id -->
+                <button type="submit" class="btn-menu">Enviar consulta</button>
+            </form>
+        </div>
+        
+        <div class="contacto-info">
+            <h3>Encuéntranos</h3>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d951.8760561924802!2d-66.1559845!3d-17.3875734!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e3750066811993%3A0xdf9381e667686b45!2sCINCO%26MEDIO%20coffee%20industry!5e0!3m2!1ses-419!2sbo!4v1761862027649!5m2!1ses-419!2sbo" 
+                    width="600" 
+                    height="450" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+            <p><strong>Dirección:</strong> Calle Paccierie y Av Salamanca</p>
+            <p><strong>Teléfono:</strong> +591 71484139</p>
+            <p><strong>Horario:</strong> Lunes a Domingo: 7:00 AM - 10:00 PM</p>
+        </div>
+    </div>
+</section>
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <div class="social-icons">
+            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <p>&copy; 2025 La Taza de Barro. Todos los derechos reservados.</p>
+            <p style="margin-top: 5px;">Desarrollado para: **UNIVERSIDAD REAL DE LA CÁMARA DE COMERCIO** | Estudiante: Yajaida K. Vargas M. | Docente: Lic. Alejandro Fernández</p>
+
+       
+    </footer>
+
+    <script>// Manejo del formulario de reservas - Redirección a WhatsApp
+document.getElementById('formularioReservas').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Obtener y validar campos
+    const nombre = document.getElementById('nombreReserva').value.trim();
+    const fecha = document.getElementById('fechaReserva').value;
+    const hora = document.getElementById('horaReserva').value;
+    const personas = document.getElementById('personasReserva').value;
+    const contacto = document.getElementById('contactoReserva').value.trim();
+    
+    // Validar campos obligatorios
+    if (!nombre || !fecha || !hora || !personas) {
+        alert('Por favor, completa todos los campos obligatorios del formulario.');
+        return;
+    }
+    
+    // Validar fecha (no puede ser anterior al día actual)
+    const hoy = new Date().toISOString().split('T')[0];
+    if (fecha < hoy) {
+        alert('Por favor, selecciona una fecha válida (no puede ser anterior al día actual).');
+        return;
+    }
+    
+    // Validar número de personas
+    if (personas < 1) {
+        alert('Por favor, ingresa un número válido de personas.');
+        return;
+    }
+    
+    // Validar contacto (teléfono o email) si se proporcionó
+    if (contacto) {
+        const telefonoRegex = /^[0-9+\-\s()]{10,}$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (!telefonoRegex.test(contacto) && !emailRegex.test(contacto)) {
+            alert('Por favor, ingresa un teléfono o email válido.');
+            return;
+        }
+    }
+    
+    // Número de WhatsApp (mismo que contacto)
+    const telefonoWhatsApp = '59171484139';
+    
+    // Formatear fecha en español
+    const fechaObj = new Date(fecha);
+    const opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const fechaFormateada = fechaObj.toLocaleDateString('es-ES', opcionesFecha);
+    
+    // Crear mensaje estructurado para WhatsApp
+    const mensajeWhatsApp = `*Nueva Reserva - La Taza de Barro*
+
+*Nombre:* ${nombre}
+*Fecha:* ${fechaFormateada}
+*Hora:* ${hora}
+*Número de personas:* ${personas}
+${contacto ? `*Contacto:* ${contacto}` : ''}
+
+¡Hola! Me gustaría hacer una reserva para el ${fechaFormateada} a las ${hora} para ${personas} persona${personas > 1 ? 's' : ''}.
+
+_Reserva enviada desde la página web_`;
+    
+    // Codificar el mensaje para URL
+    const mensajeCodificado = encodeURIComponent(mensajeWhatsApp);
+    
+    // Crear URL de WhatsApp
+    const urlWhatsApp = `https://wa.me/${telefonoWhatsApp}?text=${mensajeCodificado}`;
+    
+    // Redirigir a WhatsApp en nueva pestaña
+    window.open(urlWhatsApp, '_blank');
+    
+    // Limpiar el formulario
+    this.reset();
+    
+    // Mensaje de confirmación
+    alert('✅ ¡Reserva enviada! Serás redirigido a WhatsApp para confirmar tu reserva.');
+});</script>
+<script>
+    // Manejo del formulario de contacto - Redirección a WhatsApp (versión mejorada)
+document.getElementById('formularioContacto').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Validar que todos los campos estén completos
+    const nombre = document.getElementById('nombre').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const mensaje = document.getElementById('mensaje').value.trim();
+    
+    if (!nombre || !email || !mensaje) {
+        alert('Por favor, completa todos los campos del formulario.');
+        return;
+    }
+    
+    // Validar formato de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Por favor, ingresa un email válido.');
+        return;
+    }
+    
+    // Número de WhatsApp (formato internacional sin +)
+    const telefonoWhatsApp = '59171484139';
+    
+    // Crear mensaje estructurado para WhatsApp
+    const mensajeWhatsApp = `*Nueva Consulta - La Taza de Barro*
+
+*Nombre:* ${nombre}
+*Email:* ${email}
+
+*Mensaje:*
+${mensaje}
+
+_Enviado desde la página web_`;
+    
+    // Codificar el mensaje para URL
+    const mensajeCodificado = encodeURIComponent(mensajeWhatsApp);
+    
+    // Crear URL de WhatsApp
+    const urlWhatsApp = `https://wa.me/${telefonoWhatsApp}?text=${mensajeCodificado}`;
+    
+    // Redirigir a WhatsApp en nueva pestaña
+    window.open(urlWhatsApp, '_blank');
+    
+    // Limpiar el formulario
+    this.reset();
+    
+    // Mensaje de confirmación
+    alert('✅ ¡Formulario enviado! Serás redirigido a WhatsApp para completar tu consulta.');
+});
+</script>
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Menú hamburguesa
+        const navMenu = document.getElementById('navMenu');
+        const menuToggle = document.querySelector('.menu-toggle');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 900) {
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Swiper - inicialización
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.menuSwiper').forEach((el) => {
+                new Swiper(el, {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                    loop: true,
+                    pagination: {
+                        el: el.querySelector('.swiper-pagination'),
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: el.querySelector('.swiper-button-next'),
+                        prevEl: el.querySelector('.swiper-button-prev'),
+                    },
+                    breakpoints: {
+                        768: { slidesPerView: 2 },
+                        1024: { slidesPerView: 3 },
+                    },
+                });
+            });
+        });
+
+        // Manejo del formulario de reservas
+        document.querySelector('.reservas-form form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu reserva! Te contactaremos pronto para confirmar.');
+            this.reset();
+        });
+
+        // Manejo del formulario de contacto
+        document.querySelector('.contacto-form form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Mensaje enviado! Te responderemos en breve.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
